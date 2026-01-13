@@ -1,145 +1,554 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Recruitment FAQ</title>
-<meta name="description" content="Everything you want to know regarding the application process on cruisecareers.in">
+<meta name="description" content="Everything you want to know regarding the application process on cruisecareers.in" />
 <style>
-:root{
-  --bg:#0b0f14;--text:#e5e7eb;--muted:#9ca3af;--accent:#60a5fa;
-  --border:rgba(255,255,255,.12);--card:#111827
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-background:var(--bg);color:var(--text)}
-.wrap{max-width:1100px;margin:auto;padding:24px}
-h1{margin:0}
-.sub{color:var(--muted);margin:6px 0 20px}
-.search{margin:16px 0}
-input{width:100%;padding:14px;border-radius:30px;border:1px solid var(--border);
-background:#020617;color:#fff}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-.chip{padding:8px 12px;border-radius:20px;border:1px solid var(--border);
-background:#020617;cursor:pointer;font-size:13px}
-.chip.active{background:#1e40af}
-section{margin-bottom:28px}
-.cat{font-size:13px;color:#93c5fd;margin-bottom:8px}
-details{background:var(--card);border:1px solid var(--border);
-border-radius:12px;margin:10px 0;padding:10px}
-summary{cursor:pointer;font-weight:600}
-.answer{margin-top:10px;color:#d1d5db}
-.answer ul{margin:8px 0 0 20px}
-.notice{background:#10203a;border:1px solid #2563eb;
-padding:14px;border-radius:12px;margin:20px 0}
-footer{border-top:1px solid var(--border);margin-top:30px;padding-top:16px;color:var(--muted)}
-a{color:var(--accent)}
+  :root{
+    --bg:#0b0f14; --text:#e5e7eb; --muted:#9ca3af; --accent:#60a5fa;
+    --border:rgba(255,255,255,.12); --card:#0f172a; --card2:#111827;
+    --chip:#0b1226; --chipOn:#1e3a8a; --shadow:0 10px 30px rgba(0,0,0,.35);
+    --radius:16px; --radius2:12px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; color:var(--text);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:
+      radial-gradient(900px 450px at 10% 0%, rgba(96,165,250,.15), transparent 55%),
+      radial-gradient(900px 450px at 90% 20%, rgba(52,211,153,.10), transparent 60%),
+      var(--bg);
+  }
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1100px;margin:auto;padding:24px}
+  header{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+  h1{margin:0;font-size:clamp(22px,3vw,30px)}
+  .sub{color:var(--muted);margin:6px 0 0;font-size:14px}
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0 10px}
+  .search{
+    flex:1 1 360px; display:flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,.04); border:1px solid var(--border);
+    border-radius:999px; padding:10px 12px; box-shadow:var(--shadow);
+  }
+  .search input{
+    width:100%; border:0; outline:none; background:transparent; color:var(--text);
+    font-size:14px;
+  }
+  .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    color:rgba(229,231,235,.7); font-size:12px; border:1px solid var(--border);
+    padding:3px 8px; border-radius:999px; user-select:none;
+  }
+  .btn{
+    border:1px solid var(--border); background:rgba(255,255,255,.04); color:var(--text);
+    padding:10px 12px; border-radius:999px; cursor:pointer; font-size:13px;
+  }
+  .btn:hover{background:rgba(255,255,255,.07)}
+  .btn:focus{outline:none; box-shadow:0 0 0 3px rgba(96,165,250,.35)}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
+  .chip{
+    border:1px solid var(--border); background:var(--chip); color:var(--text);
+    padding:8px 10px; border-radius:999px; cursor:pointer; font-size:13px; user-select:none;
+  }
+  .chip.active{background:var(--chipOn); border-color:rgba(96,165,250,.35)}
+  .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:8px 0 14px}
+  .pill{border:1px solid var(--border); padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.03)}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+    border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+  }
+  .cardHead{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;
+    padding:14px 14px 10px; border-bottom:1px solid rgba(255,255,255,.06)}
+  .tag{
+    font-size:12px; color:rgba(229,231,235,.8);
+    background:rgba(96,165,250,.10); border:1px solid rgba(96,165,250,.25);
+    padding:4px 10px; border-radius:999px; white-space:nowrap; margin-top:2px;
+  }
+  .cardTitle{margin:0;font-size:15px;line-height:1.35}
+  details{padding:12px 14px}
+  details + details{border-top:1px solid rgba(255,255,255,.06)}
+  summary{
+    list-style:none; cursor:pointer; display:flex; gap:10px; align-items:flex-start;
+    padding:10px 10px; border-radius:var(--radius2);
+  }
+  summary::-webkit-details-marker{display:none}
+  summary:hover{background:rgba(255,255,255,.04)}
+  .q{flex:1;font-weight:650}
+  .chev{
+    width:18px;height:18px;margin-top:2px;border:2px solid rgba(229,231,235,.55);
+    border-left:0;border-top:0;transform:rotate(-45deg);transition:transform .15s ease;border-radius:2px;
+  }
+  details[open] .chev{transform:rotate(45deg); margin-top:6px}
+  .a{margin:10px 10px 0;color:rgba(229,231,235,.92);font-size:14px}
+  .a p{margin:0 0 8px}
+  .a ul{margin:8px 0 0 18px}
+  .a li{margin:6px 0}
+  .tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 10px 2px;font-size:12px;color:var(--muted)}
+  .tools a{
+    color:rgba(229,231,235,.78); border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.03); padding:6px 10px; border-radius:999px;
+  }
+  .tools a:hover{text-decoration:none;color:var(--text);border-color:rgba(96,165,250,.30)}
+  .empty{
+    padding:18px 14px; color:var(--muted);
+    background:rgba(255,255,255,.03); border:1px dashed rgba(255,255,255,.18); border-radius:var(--radius);
+  }
+  footer{margin-top:18px;border-top:1px solid rgba(255,255,255,.10);padding-top:14px;color:var(--muted);font-size:13px}
+  .notice{
+    margin-top:12px; padding:12px 14px; border-radius:var(--radius);
+    border:1px solid rgba(96,165,250,.25); background:rgba(96,165,250,.08);
+    color:rgba(229,231,235,.92);
+  }
 </style>
 </head>
-
 <body>
 <div class="wrap">
-<h1>Recruitment FAQ</h1>
-<div class="sub">Everything you want to know regarding the application process on cruisecareers.in</div>
+  <header>
+    <div>
+      <h1>Recruitment FAQ</h1>
+      <p class="sub">Everything you want to know regarding the application process on cruisecareers.in</p>
+    </div>
+  </header>
 
-<div class="search">
-<input id="search" placeholder="Search FAQs (e.g. visa, STCW, EIF, joining date)">
-</div>
+  <div class="controls" role="search">
+    <div class="search">
+      <span aria-hidden="true">🔎</span>
+      <input id="searchInput" type="search" placeholder="Search… e.g., Hot Jobs, EIF, PEME, STCW, visa, Employee ID, joining date" autocomplete="off" />
+      <span class="kbd" title="Keyboard shortcut">/</span>
+    </div>
+    <button class="btn" id="expandAllBtn" type="button">Expand all</button>
+    <button class="btn" id="collapseAllBtn" type="button">Collapse all</button>
+    <button class="btn" id="resetBtn" type="button">Reset</button>
+  </div>
 
-<div class="chips" id="chips"></div>
+  <div class="meta" aria-live="polite">
+    <span class="pill"><span id="countShown">0</span> shown</span>
+    <span class="pill"><span id="countTotal">0</span> total</span>
+    <span class="pill">Tip: press <span class="kbd">/</span> to jump to search</span>
+  </div>
 
-<div id="faqs"></div>
+  <div class="chips" id="chipBar" aria-label="Filter by category"></div>
 
-<div class="notice">
-<strong>Important:</strong><br>
-CSSI recruitment services are completely free of charge.<br><br>
-<strong>CSSI does not have any agents or branches anywhere in India.</strong>
-Please do not share your CruiseCareers login details with anyone claiming to be an agent.
-</div>
+  <main class="grid" id="faqRoot" aria-label="FAQ results"></main>
 
-<footer>
-<p>DG Shipping certified MTIs:
-<a href="https://bit.ly/DGMTI" target="_blank">https://bit.ly/DGMTI</a></p>
-
-<p>Recruitment Webinar:
-<a href="https://bit.ly/CRINwebinar" target="_blank">Join Webinar</a> |
-<a href="https://bit.ly/WebinarGeneric" target="_blank">Mobile Guide</a></p>
-
-<p>Official Website:
-<a href="https://www.cruisecareers.in" target="_blank">www.cruisecareers.in</a></p>
-</footer>
+  <footer>
+    <div class="notice">
+      <strong>Important:</strong> CSSI recruitment services are completely free of charge. There are no charges at any stage of the recruitment process.<br><br>
+      <strong>CSSI does not have any agents or branches anywhere in India.</strong> Please do not share your CruiseCareers login details with anyone claiming to be an agent.
+    </div>
+    <p style="margin:12px 0 0"><span>DG Shipping certified MTIs:</span>
+      <a href="https://bit.ly/DGMTI" target="_blank" rel="noopener noreferrer">https://bit.ly/DGMTI</a></p>
+    <p style="margin:8px 0 0"><span>Recruitment webinar:</span>
+      <a href="https://bit.ly/CRINwebinar" target="_blank" rel="noopener noreferrer">https://bit.ly/CRINwebinar</a> •
+      <a href="https://bit.ly/WebinarGeneric" target="_blank" rel="noopener noreferrer">https://bit.ly/WebinarGeneric</a></p>
+    <p style="margin:8px 0 0"><span>Job scam reporting:</span>
+      <a href="https://bit.ly/stopjobscam" target="_blank" rel="noopener noreferrer">https://bit.ly/stopjobscam</a></p>
+    <p style="margin:8px 0 0"><span>Rehire support:</span>
+      <a href="https://bit.ly/ersupport" target="_blank" rel="noopener noreferrer">https://bit.ly/ersupport</a></p>
+    <p style="margin:8px 0 0"><span>Website:</span>
+      <a href="https://www.cruisecareers.in" target="_blank" rel="noopener noreferrer">www.cruisecareers.in</a></p>
+  </footer>
 </div>
 
 <script>
-const DATA = [
-["APPLICATION PROCESS",[
-["How do I apply for a job on cruisecareers?",
-"Sign up on Cruisecareers.in, verify your email, complete your profile with passport, CV and required details, then apply once your profile is 100% complete."],
+  const FAQS = [
+    // A) APPLICATION PROCESS
+    {cat:"A) APPLICATION PROCESS", q:"How do I apply for a job on cruisecareers?",
+     a:[
+      "How to Apply",
+      ["Step 1: Sign up at Cruisecareers.in with your email and password.",
+       "Step 2: Confirm your email by clicking the verification link.",
+       "Step 3: Complete your profile with passport, CV, and all required details.",
+       "Step 4: Browse and apply for jobs once your profile is 100% complete."]
+     ],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"How to find a job suited for my profile and experience?",
+     a:["All jobs with immediate requirements are listed under Hot Jobs. Select your desired position and apply. Details provided in Step 1."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"What are the criteria for joining a Cruise Line? (Age, Qualifications, Experience, etc.)",
+     a:["Hiring Requirements:",
+        ["Age: Minimum 18–21 years (varies by brand)",
+         "Education: Completed 10th grade / 10 years of schooling / SSC",
+         "Experience: At least 12 months of work experience in the same position you're applying for"]
+     ],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I have applied for a position but now I have changed my mind and wish to apply for another position. Can I apply for multiple jobs?",
+     a:["No — you can only apply for one job on cruisecareers.",
+        "To apply for another position, you need to first withdraw your applied application. To do this:",
+        ["Log in to Cruisecareers.in",
+         "Go to Applied Jobs",
+         "Click Withdraw Application"]
+     ],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"My US C1D Visa was rejected when I first applied for it. Can I reapply for your non-US based ships?",
+     a:["Yes — you may apply. We'll evaluate your profile for cruise brands operating outside US waters that don't require US visas. However please be patient for positions to open up."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I am unable to apply for Jobs on the website (Cooling-off Period / Apply button not working / errors).",
+     a:[
+      "For application problems (errors, cooling-off periods, non-working apply buttons, loading issues, or missing options), please try these steps:",
+      ["Clear your browser cache and cookies",
+       "Try a different browser or device",
+       "Check your internet connection",
+       "Log out and log back in"],
+      "Cooling-off Period: If your previous job application was declined, you will need to serve a cooling-off period before you're eligible to reapply. You will get this information on your screen when you reapply for an open position.",
+      "Apply button not working: This occurs when the position is closed and we're no longer accepting applications — please check Hot Jobs for current openings."
+     ],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I want to apply for a role not listed under “Hot Jobs.” What should I do?",
+     a:["If your desired role isn't listed, it's currently unavailable. Go to Find Jobs, select the position, and click Notify Me to receive an email alert when it opens."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I am already working for a brand managed by CSSI but I need to change my brand. Is that possible and if yes how?",
+     a:["In most cases, if you wish to change your brand, you will first need to resign, serve a cooling-off period and then go through the entire recruitment process including personal interviews and/or assessments. Additionally, we will need to obtain HR clearance from your previous employer."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"How/When to fill in the EIF form?",
+     a:["You can fill in the EIF (Employment Information Form) after you have been selected and you have E-Signed your Offer Letter. You will receive an EIF notification on your screen as soon as you log in to CruiseCareers. Follow the instructions to fill in the EIF."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I received an Offer letter but was not part of any interview with Carnival brands or CSSI. Is this legitimate?",
+     a:["Most likely this will be a fake job offer letter. If you are unsure about the authenticity of an offer letter, please use the link below and fill in your details. Our team will respond within 48 hours."],
+     links:[{label:"Report/verify suspected job scam", url:"https://bit.ly/stopjobscam"}]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"My application status shows “Shortlisted,” but I haven’t received any response. What does this mean?",
+     a:["This could mean that we presently do not have any vacancies for this position and have placed you in our Talent pool. As soon as a position is available, we will get in touch with you. Alternatively, it could also mean we were unable to contact you for an interview date. Please ensure your contact details in your profile are current and updated."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"Can I drop in for a Walk-in Interview at CSSI?",
+     a:["At present all our interviews are by appointment only. There are no walk-in interviews being conducted. If you have applied for a position, we encourage you to complete the assigned assessments and ensure that your profile is at least 80% complete. Our team will review your application, and if found suitable, you will be invited to our office for an interview."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I could not turn up for an interview on the assigned date and time. Can I reschedule?",
+     a:["If possible, we will reschedule your interview for the next available date. However, we request you to let us know beforehand if you are unable to make it for the interview."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I received an SMS regarding my shortlisting for a job, but I have still not received any mail as mentioned in the message.",
+     a:["Check your email spam / junk folder for any communication."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"What are the stages from recruitment to the onboarding process?",
+     a:[
+      "Once you are selected for an onboard position, you will receive an Offer letter via Cruisecareers.in that you will need to e-sign within 48 hours. Steps to complete:",
+      ["Log in to Cruisecareers.in and navigate to “My Tasks”.",
+       "Open and e-sign your Offer Letter and Job Description.",
+       "Complete and submit the EIF Form.",
+       "Continue monitoring “My Tasks” for further instructions."],
+      "After submitting the EIF, your employee number will be generated. You must then complete your Pre-Employment Medical Examination (PEME), background verification, employer reference check, STCW 2010 courses, Indian CDC, SID, and Visa, as outlined in your Conditional Offer Letter within the prescribed time frame.",
+      "Upon completion of all the required formalities, you will be contacted by our Onboarding team once a joining date has been identified for you."
+     ],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I applied for a position, and my profile is also more than 80% complete. But I haven’t received any message regarding my application.",
+     a:["Our recruiters will contact you when vacancies match your profile. If shortlisted, you will receive an email invitation for a personal interview."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I have signed the Offer letter, Job description, and completed the EIF. What happens next?",
+     a:[
+      "The CSSI team will generate your employee ID within 7 days. Next steps include:",
+      ["Completing background and employer reference checks via our third-party verification agency called ATTESTR (respond promptly to their emails).",
+       "Completing your medical assessment within 7 days using the PEME link in your offer letter.",
+       "Enrolling in STCW 2010 courses if not already done. Use only DG Shipping certified Marine Training Institutes.",
+       "Monitoring “My Tasks” on your Dashboard for new assignments."]
+     ],
+     links:[{label:"DG Shipping certified MTIs", url:"https://bit.ly/DGMTI"}]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"What does “Pending Brand Approval” mean in my application status?",
+     a:["This means your application is still under review or has been forwarded to operations for further interviews or assessment. Please keep checking your email and dashboard for updates."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I am unable to perform my self-assessment (Not received / Page not responding / unable to scroll down).",
+     a:["If you have not received the assessments, it could probably mean that there are no assessments ready for the position you have applied for. No action is required by you currently. Our team will get in touch with you when we have vacancies. Additionally, you may wish to close all browser windows, clear cache and cookies, then re-login."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I have not received any mail regarding my English Language test. How/Where can I find the same?",
+     a:["Check your email spam / junk folder for any communication."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I cannot upload my passport copy; it shows a duplicate passport copy error. What does this mean?",
+     a:["This means that you have already registered for an account previously with the same passport. If you have forgotten your password, reset it using the “Forgot Password” option on the homepage."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I have log in issues - Forgot my Username & Password / Change my Email ID & Phone number associated with my account.",
+     a:["If you’ve forgotten your password, go to Cruisecareers.in and click on “Forgot Password” to reset it.",
+        "To update your contact details, log in to Cruisecareers.in, go to your dashboard, click on “My Profile,” and update your contact information."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"I am unable to complete 100% of my profile information on cruise careers.",
+     a:["To ensure 100% completion of your profile, ensure all required fields are filled and all mandatory documents are uploaded."],
+     links:[]
+    },
+    {cat:"A) APPLICATION PROCESS", q:"When/How can I get my Employee ID?",
+     a:["Your employee ID will be generated after completing the EIF form and e-signing both your offer letter and job description. Once generated, this employee ID will be emailed to you and will also be visible in your cruisecareers.in profile."],
+     links:[]
+    },
 
-["How to find a job suited for my profile and experience?",
-"All jobs with immediate requirements are listed under Hot Jobs."],
+    // B) CHARGES & FEES
+    {cat:"B) CHARGES & FEES", q:"Are there any charges to apply for a job or recruitment process with CSSI?",
+     a:["All CSSI recruitment services are completely free of charge. There are no charges at any stage of the recruitment process.",
+        "CSSI does not have any agents or branches anywhere in India. Please do not share your cruisecareers log in details with anyone claiming to be an agent."],
+     links:[]
+    },
 
-["What are the criteria for joining a cruise line?",
-"Minimum age 18–21 years (brand dependent), 10th/SSC qualification, and at least 12 months experience in the same role."],
+    // C) JOINING A SHIP
+    {cat:"C) JOINING A SHIP", q:"I have an issue regarding my Flight tickets (Not received / Flight got cancelled etc).",
+     a:["Please email your brand Logistics Coordinator / Compliance Team (specific to your selected brand/company) with your query. Don’t forget to mention your name, Emp ID, Name of ship and joining date."],
+     links:[]
+    },
+    {cat:"C) JOINING A SHIP", q:"Can I reschedule / cancel / postpone / bring forward my joining date?",
+     a:["This is highly unlikely. Requests for postponement of joining date depends upon the reason.",
+        "Please email your brand Logistics Coordinator / Compliance Team (specific to your selected brand/company) with your query and the reason along with any supporting documentation."],
+     links:[]
+    },
+    {cat:"C) JOINING A SHIP", q:"My ship joining date got cancelled due to operational reasons. What next?",
+     a:["If your joining date has been cancelled, our onboarding team will contact you with further details as and when available."],
+     links:[]
+    },
+    {cat:"C) JOINING A SHIP", q:"What is career progression or promotion policy? Can I apply for a promotion?",
+     a:["Promotions are solely based on onboard performance appraisal. These are handled by the shoreside operations department overseas (not CSSI). You cannot ‘apply’ for a promotion – your performance in your contract should speak for itself."],
+     links:[]
+    },
+    {cat:"C) JOINING A SHIP", q:"I have a joining date. When will I get all my joining documents like Contract, Flight Tickets etc?",
+     a:["You will receive your contract (Seafarers Employment Agreement) upto 30 days in advance – you should sign and send it back within 3 days. All other documents such as your flight tickets etc will follow."],
+     links:[]
+    },
+    {cat:"C) JOINING A SHIP", q:"I have all documents ready and am waiting for my joining date. What should I do?",
+     a:["We encourage you to continue to work with your current organization till you hear from the onboarding team about your confirmed joining date."],
+     links:[]
+    },
 
-["Can I apply for multiple jobs?",
-"You can apply for only one job at a time. Withdraw the current application before applying for another role."],
+    // D) REHIRE PROCESS
+    {cat:"D) REHIRE PROCESS", q:"I was previously employed onboard a Carnival brand ship. I now wish to rejoin. What documents are needed for the rehire?",
+     a:["If you were previously employed with a Carnival brand and wish to rejoin after a career break, use the link below and fill in your details. Our Employee Relations team will check your details and reply.",
+        "Please note you cannot apply for rehire if your exit from the company was on disciplinary grounds or breaking contract."],
+     links:[{label:"Rehire support", url:"https://bit.ly/ersupport"}]
+    },
 
-["My US C1D visa was rejected. Can I apply for non-US ships?",
-"Yes. You may be considered for brands operating outside US waters, subject to availability."]
-]],
+    // E) PRE-EMPLOYMENT MEDICAL TEST (PEME)
+    {cat:"E) PRE-EMPLOYMENT MEDICAL TEST (PEME)", q:"I was unable to complete my Pre-Employment Medical Examinaton (PEME) within the prescribed time period. How can I reschedule it?",
+     a:["If you wish to reschedule your PEME appointment, please speak to our Medical Team on 079425 29292 and Select Medical from the IVR Menu."],
+     links:[{label:"Call Medical Team", url:"tel:+917942529292"}]
+    },
+    {cat:"E) PRE-EMPLOYMENT MEDICAL TEST (PEME)", q:"Where can I find PEME centers?",
+     a:["Medical centers are listed via a link in your offer letter. You can complete your PEME at a center closest to your residence."],
+     links:[]
+    },
 
-["CHARGES & FEES",[
-["Are there any charges to apply for a job?",
-"All CSSI recruitment services are completely free of charge. There are no charges at any stage."]
-]],
+    // F) TRAINING
+    {cat:"F) TRAINING", q:"I have been selected for Costa Cruises. When will my training at the Culinary Academy of India (CAI) Hyderabad begin? Where and how can I find the details?",
+     a:["You will receive an email from our training coordinator if your brand/rank requires this training."],
+     links:[]
+    },
+    {cat:"F) TRAINING", q:"Are STCW courses compulsory?",
+     a:[
+      "Yes. Basic STCW courses, also called Basic Safety Training (BST), are now compulsory for all cruise ship crew for all brands. The below basic STCW courses should be completed at a DG Shipping recognized institute:",
+      ["Personal Survival Techniques (PST)",
+       "Fire Prevention & Fire Fighting (FPFF)",
+       "Elementary First Aid (EFA)",
+       "Personal Safety & Social Responsibilities (PSSR)"],
+      "If applicable, depending on the brand in addition to the above, these courses are also required:",
+      ["Designated Security Duties (DSD)",
+       "Passenger Ship Familiarization (PSF)"],
+      "Please note the costs of these courses will be borne by you and is not reimbursed."
+     ],
+     links:[{label:"DG Shipping certified MTIs", url:"https://bit.ly/DGMTI"}]
+    },
 
-["TRAINING",[
-["Are STCW courses compulsory?",
-"Yes. Basic STCW courses must be completed at DG Shipping certified institutes. The cost is borne by the candidate."]
-]],
+    // G) VISA PROCESS  ✅ (this is the missing bit)
+    {cat:"G) VISA PROCESS", q:"How do I know which visa to apply for and when?",
+     a:["Once you receive your employee ID, the CSSI Visa team will contact you and provide information on how you can apply for a visa with detailed user guides."],
+     links:[]
+    },
+    {cat:"G) VISA PROCESS", q:"Is US Visa compulsory to join?",
+     a:[
+      "Yes. A valid US C1D visa is required to join our ships based in North America such as Princess Cruises, Holland America Line, Seabourn and Cunard Line. Depending upon the itinerary, a US C1D visa may also be required to join a P&O Cruises ship.",
+      "If you fail to obtain a US C1D visa for any reason, your candidature will be cancelled. Regretfully, we can provide you with only one chance to apply for a US C1/D visa."
+     ],
+     links:[]
+    },
 
-["VISA PROCESS",[
-["How do I know which visa to apply for?",
-"Once your employee ID is generated, the CSSI Visa team will guide you with detailed instructions."],
+    // H) CSSI CONTACT DETAILS
+    {cat:"H) CSSI CONTACT DETAILS", q:"How can I contact CSSI for recruitment or the application process queries?",
+     a:[
+      "Have any queries related to recruitment or the application process? Join our webinar held Monday to Friday (working days only) from 3:30pm to 4:30pm and speak to our recruitment experts directly:",
+      ["Click to join: https://bit.ly/CRINwebinar",
+       "Click this link to know how to join using your mobile phone: https://bit.ly/WebinarGeneric"],
+      "Carnival Support Services India Pvt. Ltd, Kohinoor City, Tower 2, Floor 5, Kirol Road, OFF LBS Marg, Kurla West, Mumbai 400070.",
+      "Open – (Mon – Fri) 09:30am to 05:30pm",
+      "Website: www.cruisecareers.in"
+     ],
+     links:[
+      {label:"Join webinar", url:"https://bit.ly/CRINwebinar"},
+      {label:"Webinar mobile guide", url:"https://bit.ly/WebinarGeneric"},
+      {label:"CruiseCareers website", url:"https://www.cruisecareers.in"}
+     ]
+    }
+  ];
 
-["Is US Visa compulsory?",
-"Yes. A valid US C1/D visa is mandatory for ships operating in North America."]
-]]
-];
+  const searchInput = document.getElementById("searchInput");
+  const chipBar = document.getElementById("chipBar");
+  const faqRoot = document.getElementById("faqRoot");
+  const countShown = document.getElementById("countShown");
+  const countTotal = document.getElementById("countTotal");
 
-const chips = document.getElementById("chips");
-const faqs = document.getElementById("faqs");
-const search = document.getElementById("search");
+  const unique = (arr)=>Array.from(new Set(arr));
+  const cats = unique(FAQS.map(x=>x.cat));
+  let activeCat = "All";
 
-let active = "ALL";
+  const slugify = (s)=>s.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,90);
+  const el = (tag, attrs={}, children=[])=>{
+    const n=document.createElement(tag);
+    for(const [k,v] of Object.entries(attrs)){
+      if(k==="class") n.className=v;
+      else if(k==="html") n.innerHTML=v;
+      else if(k.startsWith("on") && typeof v==="function") n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k,v);
+    }
+    for(const c of children) n.appendChild(typeof c==="string"?document.createTextNode(c):c);
+    return n;
+  };
 
-function render(){
-faqs.innerHTML="";
-DATA.forEach(([cat,qs])=>{
-if(active!=="ALL" && active!==cat) return;
-let section=document.createElement("section");
-section.innerHTML=`<div class="cat">${cat}</div>`;
-qs.forEach(([q,a])=>{
-if(search.value && !(`${q} ${a}`.toLowerCase().includes(search.value.toLowerCase()))) return;
-let d=document.createElement("details");
-d.innerHTML=`<summary>${q}</summary><div class="answer">${a}</div>`;
-section.appendChild(d);
-});
-faqs.appendChild(section);
-});
-}
+  function buildChips(){
+    chipBar.innerHTML="";
+    const mk = (label)=>{
+      const b = el("button",{class:"chip"+(label===activeCat?" active":""), type:"button"},[label]);
+      b.addEventListener("click",()=>{
+        activeCat = label;
+        chipBar.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+        b.classList.add("active");
+        render();
+      });
+      return b;
+    };
+    chipBar.appendChild(mk("All"));
+    cats.forEach(c=>chipBar.appendChild(mk(c)));
+  }
 
-["ALL",...DATA.map(d=>d[0])].forEach(c=>{
-let b=document.createElement("div");
-b.className="chip"+(c==="ALL"?" active":"");
-b.textContent=c;
-b.onclick=()=>{active=c;document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()};
-chips.appendChild(b);
-});
+  function matches(f){
+    if(activeCat!=="All" && f.cat!==activeCat) return false;
+    const q=(searchInput.value||"").trim().toLowerCase();
+    if(!q) return true;
+    const parts=[];
+    for(const p of (f.a||[])){
+      if(Array.isArray(p)) parts.push(...p);
+      else parts.push(p);
+    }
+    const linkParts = (f.links||[]).flatMap(x=>[x.label,x.url]);
+    const hay=[f.cat,f.q,...parts,...linkParts].join(" ").toLowerCase();
+    const tokens=q.split(/\s+/).filter(Boolean);
+    return tokens.every(t=>hay.includes(t));
+  }
 
-search.oninput=render;
-render();
+  function render(){
+    faqRoot.innerHTML="";
+    const results = FAQS.filter(matches);
+    countTotal.textContent = String(FAQS.length);
+    countShown.textContent = String(results.length);
+
+    if(!results.length){
+      faqRoot.appendChild(el("div",{class:"empty"},["No matches. Try different keywords (e.g., visa, US C1D, EIF, PEME, STCW)."]));
+      return;
+    }
+
+    const byCat = new Map();
+    for(const item of results){
+      if(!byCat.has(item.cat)) byCat.set(item.cat,[]);
+      byCat.get(item.cat).push(item);
+    }
+
+    for(const [cat, items] of Array.from(byCat.entries())){
+      const card = el("section",{class:"card"});
+      const head = el("div",{class:"cardHead"},[
+        el("div",{},[
+          el("div",{class:"tag"},[cat]),
+          el("h2",{class:"cardTitle"},[cat])
+        ])
+      ]);
+      card.appendChild(head);
+
+      items.forEach(f=>{
+        const id = `${slugify(f.cat)}-${slugify(f.q)}`;
+        const d = el("details",{"data-qid":id});
+        const s = el("summary",{tabindex:"0"},[
+          el("div",{class:"q",id:id},[f.q]),
+          el("div",{class:"chev","aria-hidden":"true"})
+        ]);
+
+        const aWrap = el("div",{class:"a"});
+        (f.a||[]).forEach(part=>{
+          if(Array.isArray(part)){
+            const ul=el("ul");
+            part.forEach(li=>ul.appendChild(el("li",{},[li])));
+            aWrap.appendChild(ul);
+          }else{
+            aWrap.appendChild(el("p",{},[part]));
+          }
+        });
+
+        const tools = el("div",{class:"tools"},[
+          el("a",{href:"#"+id, title:"Deep link"},["# Link"]),
+          el("a",{href:"#", title:"Copy deep link"},["Copy link"])
+        ]);
+        tools.querySelectorAll("a")[1].addEventListener("click",(e)=>{
+          e.preventDefault();
+          const url = `${location.origin}${location.pathname}#${id}`;
+          if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(url).then(()=>{
+              e.target.textContent="Copied!";
+              setTimeout(()=>e.target.textContent="Copy link",900);
+            }).catch(()=>prompt("Copy this link:", url));
+          }else{
+            prompt("Copy this link:", url);
+          }
+        });
+
+        (f.links||[]).forEach(L=>{
+          const attrs={href:L.url, title:L.url};
+          if(String(L.url).startsWith("http")){ attrs.target="_blank"; attrs.rel="noopener noreferrer"; }
+          tools.appendChild(el("a",attrs,[L.label]));
+        });
+
+        d.appendChild(s);
+        d.appendChild(aWrap);
+        d.appendChild(tools);
+        card.appendChild(d);
+      });
+
+      faqRoot.appendChild(card);
+    }
+  }
+
+  document.getElementById("expandAllBtn").addEventListener("click",()=>{
+    faqRoot.querySelectorAll("details").forEach(d=>d.open=true);
+  });
+  document.getElementById("collapseAllBtn").addEventListener("click",()=>{
+    faqRoot.querySelectorAll("details").forEach(d=>d.open=false);
+  });
+  document.getElementById("resetBtn").addEventListener("click",()=>{
+    searchInput.value=""; activeCat="All";
+    chipBar.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+    chipBar.querySelector(".chip").classList.add("active");
+    history.replaceState(null,"",location.pathname);
+    render();
+    searchInput.focus();
+  });
+  searchInput.addEventListener("input",render);
+  window.addEventListener("keydown",(e)=>{
+    if(e.key==="/" && document.activeElement!==searchInput){
+      e.preventDefault(); searchInput.focus();
+    }
+  });
+
+  buildChips();
+  render();
 </script>
 </body>
 </html>
